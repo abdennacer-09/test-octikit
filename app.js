@@ -22,7 +22,7 @@ async function Git(){
         var commit = await git.commit("DEV: test commit ");
         status  = await git.status();
         console.log('status ====>',status);
-        var push = await git.push("origin", "master");
+        var push = await git.push("main");
         console.log("push ======>", push)
         if (!status.isClean()) {
             return;
