@@ -14,21 +14,21 @@ async function Git(){
     // }
 
     try {
-        const status = await git.status();
+        var status = await git.status();
 
         console.log('status ====>',status);
-        const add = await git.add(".");
+        var add = await git.add(".");
         console.log('add ====>',status);
-        const commit = await git.commit("DEV: test commit ");
-        status = await git.status();
-        onsole.log('status ====>',status);
-        const push = await git.push("origin", "master");
+        var commit = await git.commit("DEV: test commit ");
+        status  = await git.status();
+        console.log('status ====>',status);
+        var push = await git.push("origin", "master");
         console.log("push ======>", push)
         if (!status.isClean()) {
             return;
          }
       } catch (error) {
-        const status = await git.status();
+            status = await git.status();
      
     if (status.conflicted.length > 0) {
         return;
