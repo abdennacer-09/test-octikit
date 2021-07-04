@@ -1,0 +1,55 @@
+<div>
+  <script src="../storeino-app-store.js"></script>
+  <div id="app_notifications" v-if="data">
+    <template>
+      <div class="pp-container" v-if="data.productsIds.length != 0">
+        <div
+          class="content"
+          :class="data.positions.position"
+          :style="`background:${data.colors.background};transform:${transistion}; opacity:${opacity}`"
+          @mouseover="mouseOver"
+          @mouseleave="mouseLeave"
+        >
+          <!-- @mouseleave="lunchPopup"
+          @click="showProduct" -->
+          <span class="close" @click="mouseLeave(true)">×</span>
+          <!-- @click="hiddenpopup" -->
+          <div :class="{'anim':scale}" @click="showProduct">
+            <div class="prodcut">
+              <div class="pro image">
+                <img class="image-prodacut" :src="imagesrc" alt="" />
+              </div>
+              <div class="pro info">
+                <small class="name"
+                  ><strong :style="`color:${data.colors.name};`">
+                    {{name}}
+                  </strong>
+                  <span :style="{'color':data.colors.message}">
+                    {{buy}}
+                  </span></small
+                >
+                <div class="info-tetile">
+                  <h4
+                    class="titel-prodcut"
+                    :style="{'color':data.colors.title}"
+                  >
+                    {{nameProduct}}
+                  </h4>
+                  <div class="text">
+                    <p class="city" :style="{'color':data.colors.city}">
+                      {{city}}
+                    </p>
+                    <div class="minute" :style="{'color':data.colors.time}">
+                      {{time}} {{unit}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="over"></div> -->
+        </div>
+      </div>
+    </template>
+  </div>
+</div>

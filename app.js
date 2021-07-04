@@ -1,19 +1,67 @@
 
-
+const decompress = require('decompress');
 const { exec } = require("child_process");
+const simpleGit = require("simple-git");
+const git = simpleGit.default();
 
-exec('git add .', (error, stdout, stderr)=> {
-    if(error){
-        console.log(`error: ${error.message}`);
+async function Git(){
+    // try{
+    //     await git.checkout("app.js");
+    // const branch = await git.branch();
+    // console.log('branch ====>',branch.current)
+    // }catch(error){
+    //     console.log(error)
+    // }
+
+    try {
+        const status = await git.status();
+
+        console.log('status ====>',status);
+        const add = await git.add(".");
+        console.log('add ====>',status);
+        const commit = await git.commit("DEV: test commit ");
+        status = await git.status();
+        onsole.log('status ====>',status);
+        const push = await git.push("origin", "master");
+        console.log("push ======>", push)
+        if (!status.isClean()) {
+            return;
+         }
+      } catch (error) {
+        const status = await git.status();
+     
+    if (status.conflicted.length > 0) {
         return;
     }
-
-    if(stderr){
-        console.log(`stderr: ${stderr}`);
-        return;
+    
+        console.log("err =======>",error);
     }
-    console.log(`stdout: ${stdout}`);
-})
+}
+
+Git();
+
+
+// (async ()=> {
+//     try{
+//         const files = await decompress("1618243451152.zip", "dist");
+//         console.log("done!");
+//     }catch(error){
+//         console.log(error);
+//     }
+// })();
+
+// exec('git status', (error, stdout, stderr)=> {
+//     if(error){
+//         console.log(`error: ${error.message}`);
+//         return;
+//     }
+
+//     if(stderr){
+//         console.log(`stderr: ${stderr}`);
+//         return;
+//     }
+//     console.log(`stdout: ${stdout}`);
+// })
 
 
 
