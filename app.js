@@ -19,10 +19,10 @@ async function Git(){
         console.log('status ====>',status);
         var add = await git.add(".");
         console.log('add ====>',status);
-        var commit = await git.commit("DEV: test commit ");
+        var commit = await git.commit(['-m', 'test nodecmdgit']);
         status  = await git.status();
         console.log('status ====>',status);
-        var push = await git.push("main");
+        var push = await git.push('--all');
         console.log("push ======>", push)
         if (!status.isClean()) {
             return;
